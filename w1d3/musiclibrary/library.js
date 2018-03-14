@@ -29,35 +29,35 @@ var library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-// var printPlaylists = function (library) {
+var printPlaylists = function (library) {
 
-//   for(var key in library.playlists){
-//     var playID = library.playlists[key].id;
-//     var playName = library.playlists[key].name;
-//     var playTracks = library.playlists[key].tracks.length;
-//     var allInfo = playID + ": " + playName + " - " + playTracks + " tracks";
-//     console.log(allInfo);
-//   }
-// }
-// printPlaylists(library);
+  for(var key in library.playlists){
+    var playID = library.playlists[key].id;
+    var playName = library.playlists[key].name;
+    var playTracks = library.playlists[key].tracks.length;
+    var allInfo = playID + ": " + playName + " - " + playTracks + " tracks";
+    console.log(allInfo);
+  }
+}
+printPlaylists(library);
 
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
-// var printTracks = function (library) {
-//   for (var key in library.tracks){
-//     var trackID = library.tracks[key].id;
-//     var trackName = library.tracks[key].name;
-//     var artistName = library.tracks[key].artist;
-//     var albumInfo = library.tracks[key].album;
+var printTracks = function (library) {
+  for (var key in library.tracks){
+    var trackID = library.tracks[key].id;
+    var trackName = library.tracks[key].name;
+    var artistName = library.tracks[key].artist;
+    var albumInfo = library.tracks[key].album;
 
-//     var allInfo = trackID + ": " + trackName + " by " + artistName + " (" + albumInfo + ")"
-//     console.log(allInfo);
-//   }
-// }
-// printTracks(library);
+    var allInfo = trackID + ": " + trackName + " by " + artistName + " (" + albumInfo + ")"
+    console.log(allInfo);
+  }
+}
+printTracks(library);
 
 // prints a list of tracks for a given playlist, in the form:
 // p01: Coding Music - 2 tracks
@@ -88,9 +88,11 @@ printPlaylist("p01");
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-
+  var position = library.playlists[playlistId].tracks.length
+  library.playlists[playlistId].tracks[position] = trackId;
+  console.log(library.playlists);
 }
-
+addTrackToPlaylist("t01", "p02");
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
@@ -102,17 +104,34 @@ var uid = function() {
 
 // adds a track to the library
 
-var addTrack = function (name, artist, album) {
+var addTrack = function (name2, artist, album) {
+
+  newID = uid()
+  newName = name2;
+  newArtist = artist;
+  newAlbum = album;
+
+  library.tracks[newID] = {"id" : newID, "name" : newName, "artist" : newArtist, "album" : newAlbum};
+
+
+  console.log(library);
 
 }
 
+addTrack("U2", "Beauitful Day", "Day Album");
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
 
+  playName = name;
+  newID = uid();
+  library.playlists[newID] = {"id" : newID, "name" : name, "tracks" : []}
+
+  console.log(library);
 }
 
+addPlaylist("summer playlist");
 
 // STRETCH:
 // given a query string string, prints a list of tracks
