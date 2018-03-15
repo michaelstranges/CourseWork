@@ -70,7 +70,7 @@ var printPlaylist = function (playlistId) {
   var playName = library.playlists[playlistId].name; // stores playlist name
   var playTracks = library.playlists[playlistId].tracks.length; //stores tracks length
   var playName = playID + ": " + playName + " - " + playTracks + " tracks" //combines
-  console.log(playName); // prints the playlist name
+  console.lslog(playName); // prints the playlist name
   var trackNum = library.playlists[playlistId]["tracks"]; //stores the tracks found in each playlist (t01, t02)
 
     for(var i = 0; i < trackNum.length; i++){
